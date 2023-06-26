@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+    <!-- Bean definitions go here -->
+    <!-- here the id attribute is for the getBean() function to know which function to call from this xml file -->
+    <!--  this is a setter based dependency injection, , you need to define the setter manually in the respective class (here springlearning.Triangle) -->
+    <bean id="triangleShape" class="springlearning.Triangle"> 
+    	<property name="type" value="equilateral"></property>
+    </bean>
+    
+    <!-- Constructor based dependency injection -->
+    <!-- you need to define the constructor manually in the respective class (here springlearning.Triangle) -->
+    <!--  -->
+    <!-- to invoke default constructor , don't mention anything inside the bean tag body-->
+    <!--  if there is only one parameterized constructor with one instance variable initialization, then you can mention only the value attribute-->
+    <!--
+    <bean id="triangleConst" class="springlearning.Triangle">
+    	<constructor-arg value="scalene"/>
+    </bean> -->
+    
+    <bean id="triangleType" class="springlearning.Triangle">
+    	<constructor-arg type="java.lang.String" value="Isosceles"/>
+    </bean>
+    
+    <bean id="triangleHeight" class="springlearning.Triangle">
+    	<constructor-arg type="int" value="10"/>
+    </bean>
+    
+    <bean id="Overloading1" class="springlearning.Triangle">
+    	<constructor-arg index="0"  type="java.lang.String" value="Equilateral"></constructor-arg>
+    	<constructor-arg index="1" type="int" value="20"></constructor-arg>
+    </bean>
+    
+    <bean id="Overloading2" class="springlearning.Triangle">
+    	<constructor-arg index="0" type="int" value="20"></constructor-arg>
+    	<constructor-arg index="1" type="java.lang.String" value="Scalene"></constructor-arg>
+    </bean>
+    
+</beans>
