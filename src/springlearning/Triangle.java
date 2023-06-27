@@ -1,6 +1,6 @@
 package springlearning;
 
-public class Triangle {
+public class Triangle implements Shape{
 	
 	Point pointA;
 	Point pointB;
@@ -29,8 +29,8 @@ public class Triangle {
 		this.pointC = pointC;
 	}
 
-	
-	void draw() {
+	@Override
+	public void draw() {
 		System.out.println("Triangle drawn ");
 		System.out.println(getPointA().getX() + " " + getPointA().getY());
 		System.out.println(getPointB().getX() + " " + getPointB().getY());

@@ -4,29 +4,28 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="triangle" class="springlearning.Triangle" autowire="byName">
-    	<property name="PointA" ref="origin"></property>
-    	<property name="PointB" ref="point1"></property>
-    	<property name="PointC" ref="point2"></property>
-    </bean>
-    <!-- starting from Spring 4.3 if you want to inject placeholder values into primitive-type 
-    like how , here we are assigning a string literal to class variable x which is of type int, we need to type-cast it explicitly
-    To perform this type conversion we need to use Spring's SpEL (Spring Expression Language)-->
-    <bean class="org.springframework.bean.factory.config.PropertyPlaceHolderConfigurer">
-        <property name="locations" value="pointsConfig.properties"></property>
-   </bean> 
-   
-    <bean id="pointA" class="springlearning.Point">
-    	<property name="x" value="${originx}" ></property>
-    	<property name="y" value="${originy}"></property>
+    <bean id="triangle" class="springlearning.Triangle">
+    	<property name="PointA" ref="point1"></property>
+    	<property name="PointB" ref="point2"></property>
+    	<property name="PointC" ref="point3"></property>
     </bean>
     
-    <bean id="pointB" class="springlearning.Point">
+    <!--  note that there is no setter function for the instance variable of --> 
+    <bean id="circle" class="springlearning.Circle">
+    	<property name="center" ref="point3"></property>
+    </bean>
+
+    <bean id="point1" class="springlearning.Point">
+    	<property name="x" value="0" ></property>
+    	<property name="y" value="0"></property>
+    </bean>
+    
+    <bean id="point2" class="springlearning.Point">
     	<property name="x" value="5"></property>
     	<property name="y" value="10"></property>
     </bean>
     
-    <bean id="pointC" class="springlearning.Point">
+    <bean id="point3" class="springlearning.Point">
     	<property name="x" value="10"></property>
     	<property name="y" value="25"></property>
     </bean>

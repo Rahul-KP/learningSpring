@@ -10,9 +10,9 @@ public class DrawingApp {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		
 		//bean generated via setter based dependency injection
-		Triangle t =  (Triangle) context.getBean("triangle");
+		Shape s =  (Shape) context.getBean("circle");
 		context.registerShutdownHook();
-		t.draw();
+		s.draw();
 		context.close();
 	}
 }
