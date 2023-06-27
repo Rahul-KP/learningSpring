@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <!-- you can omit the body of the tag when you say autowire byName ,but the beans must have 
-    	id attribute value as the exact name of the instance variable (case matters)-->
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
     <bean id="triangle" class="springlearning.Triangle" autowire="byName">
-    	<!-- <property name="PointA" ref="origin"></property>
+    	<property name="PointA" ref="origin"></property>
     	<property name="PointB" ref="point1"></property>
-    	<property name="PointC" ref="point2"></property> -->
+    	<property name="PointC" ref="point2"></property>
     </bean>
-    
-    <!-- Beans with the same id name as class variable name-->
+    <!-- starting from Spring 4.3 if you want to inject placeholder values into primitive-type 
+    like how , here we are assigning a string literal to class variable x which is of type int, we need to type-cast it explicitly
+    To perform this type conversion we need to use Spring's SpEL (Spring Expression Language)-->
+    <bean class="org.springframework.bean.factory.config.PropertyPlaceHolderConfigurer">
+        <property name="locations" value="pointsConfig.properties"></property>
+   </bean> 
+   
     <bean id="pointA" class="springlearning.Point">
-    	<property name="x" value="0"></property>
-    	<property name="y" value="0"></property>
+    	<property name="x" value="${originx}" ></property>
+    	<property name="y" value="${originy}"></property>
     </bean>
     
     <bean id="pointB" class="springlearning.Point">
@@ -25,9 +30,5 @@
     	<property name="x" value="10"></property>
     	<property name="y" value="25"></property>
     </bean>
-    
+   
 </beans>
-<!-- the other values that autowire attribute can take are byType and constructor 
-	But in order to use those , we should have only one bean of each type or only one constructor for each bean type
-	the type of the bean can be understood form the class attribute , in the above code we have 3 beans named pointA, pointB
-	and pointC , each of type springlearning.Point i.e the class defined by us (user defined)-->
