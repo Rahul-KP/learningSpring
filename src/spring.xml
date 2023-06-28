@@ -10,8 +10,13 @@
     	<property name="PointC" ref="point3"></property>
     </bean>
     
-    <!--  note that there is no setter function for the instance variable of --> 
     <bean id="circle" class="springlearning.Circle">
+    <!--  since the below bean dependency is commented out, the setter function will not be able to set any value for center variable
+    		This would in-turn result in a null pointer exception where ever the circle object is used 
+    		this error Null point exception will occur only at runtime
+    		
+    		But, as a developer , we want to catch these errors way before runtime, so we use the @Required annotation (above the setter function),
+    		making this dependency mandatory to have a value assigned-->
     	<property name="center" ref="point3"></property>
     </bean>
 
