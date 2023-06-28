@@ -11,15 +11,12 @@
     </bean>
     
     <bean id="circle" class="springlearning.Circle">
-    <!--  since the below bean dependency is commented out, the setter function will not be able to set any value for center variable
-    		This would in-turn result in a null pointer exception where ever the circle object is used 
-    		this error Null point exception will occur only at runtime
-    		
-    		But, as a developer , we want to catch these errors way before runtime, so we use the @Required annotation (above the setter function),
-    		making this dependency mandatory to have a value assigned-->
-    	<property name="center" ref="point3"></property>
+    	<!-- <property name="center" ref="point3"></property>-->
     </bean>
-
+	
+	<!-- By default the @Autowired annotation is going to look for a bean by type
+		Here there are 3 beans of the same type , springlearning.Point
+		So we get an UnsatisfiedDependencyException -->
     <bean id="point1" class="springlearning.Point">
     	<property name="x" value="0" ></property>
     	<property name="y" value="0"></property>
@@ -35,4 +32,6 @@
     	<property name="y" value="25"></property>
     </bean>
    
+    <!-- this line is very important, this is the one that enables the spring frame to start looking for @Autowired annotation in the java files -->
+   	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
 </beans>

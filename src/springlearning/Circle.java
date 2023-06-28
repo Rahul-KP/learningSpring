@@ -1,9 +1,12 @@
 package springlearning;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Circle implements Shape {
 	
 	private Point center;
 	
+	@Autowired
 	public void setCenter(Point center) {
 		this.center=center;
 	}
